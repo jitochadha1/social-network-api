@@ -8,38 +8,7 @@ const {
 const dateFormat = require("../utils/dateFormat");
 const { schema } = require("./User");
 
-const ThoughtSchema = new Schema(
-  {
-    thoughtText: {
-      type: String,
-      required: true,
-      minlength: 1,
-      maxlength: 280,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (createdAtVal) => dateFormat(createdAtVal),
-    },
-    username: {
-      type: String,
-      required: true,
-    },
-    reactions: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "reactions",
-      },
-    ],
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
-  }
-);
-
-const reactionSchema = new Schema(
+const ReactionSchema = new Schema(
   {
     reactionId: {
       type: Schema.Types.ObjectId,
@@ -68,6 +37,32 @@ const reactionSchema = new Schema(
       getters: true,
     },
     id: false,
+  }
+);
+
+const ThoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 280,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (createdAtVal) => dateFormat(createdAtVal),
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    reactions: [ReactionSchema],
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
   }
 );
 
