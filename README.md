@@ -1,6 +1,6 @@
 ![alt text](https://img.icons8.com/material-sharp/2x/software-license.png)
 
-# Professional README Generator
+# Social Network API
 
 https://github.com/jitochadha1/social-network-api.git
 
